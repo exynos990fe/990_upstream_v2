@@ -381,8 +381,7 @@ static struct dma_buf *vb2_vmalloc_get_dmabuf(void *buf_priv, unsigned long flag
 /*       callbacks for DMABUF buffers        */
 /*********************************************/
 
-static int vb2_vmalloc_map_dmabuf(void *mem_priv, struct dma_buf_attachment *attach)
-
+static int vb2_vmalloc_map_dmabuf(void *mem_priv, size_t size, int memflags)
 {
 	struct vb2_vmalloc_buf *buf = mem_priv;
 
@@ -391,7 +390,7 @@ static int vb2_vmalloc_map_dmabuf(void *mem_priv, struct dma_buf_attachment *att
 	return buf->vaddr ? 0 : -EFAULT;
 }
 
-static void vb2_vmalloc_unmap_dmabuf(void *mem_priv, struct dma_buf_attachment *attach)
+static void vb2_vmalloc_unmap_dmabuf(void *mem_priv, size_t size)
 {
 	struct vb2_vmalloc_buf *buf = mem_priv;
 
